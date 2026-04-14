@@ -46,7 +46,9 @@
 
 \titleformat{\section}{\Large\bfseries\color{ujdark}}{\thesection}{0.6em}{}
 \titleformat{\subsection}{\large\bfseries\color{ujdark}}{\thesubsection}{0.6em}{}
-\pretocmd{\section}{\ifnum\value{section}>0\clearpage\fi}{}{}
+\newif\ifujfirstsection
+\ujfirstsectiontrue
+\pretocmd{\section}{\ifujfirstsection\ujfirstsectionfalse\else\clearpage\fi}{}{}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -377,9 +379,8 @@ The final selected mesh --- a global element size of \SI{8}{mm} with a local \SI
 \bibliography{references}
 
 \appendix
-\clearpage
 \section{Plate drawing and key dimensions}
-%Figure~\ref{fig:plate_drawing} reproduces the assignment drawing used to define the geometry. The plate thickness is \SI{12}{mm} and the overall plate height is \SI{120}{mm}. The diameter of the large circular feature is defined by the assignment rule as the last two digits of the student number (in millimetres), unless that value is below 20 in which case \SI{20}{mm} is added; for student number \studentnumber, this gives a diameter of \SI{82}{mm}. Where the drawing shows a nominal circular diameter (e.g.\ $\varnothing 90$), this is treated as the template value that is replaced by the student-number-based diameter for the final model used in the analysis.
+Figure~\ref{fig:plate_drawing} reproduces the assignment drawing used to define the geometry. The plate thickness is \SI{12}{mm} and the overall plate height is \SI{120}{mm}. The diameter of the large circular feature is defined by the assignment rule as the last two digits of the student number (in millimetres), unless that value is below 20 in which case \SI{20}{mm} is added; for student number \studentnumber, this gives a diameter of \SI{82}{mm}. The drawing also indicates a \SI{250}{mm} top length, an \SI{80}{mm} upper relief width, and a lower relief radius of \SI{70}{mm}. Where the drawing shows a nominal circular diameter (e.g.\ $\varnothing 90$), this is treated as the template value that is replaced by the student-number-based diameter for the final model used in the analysis.
 
 \begin{figure}[H]
     \centering
