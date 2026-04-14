@@ -21,6 +21,7 @@
 \usepackage{titlesec}
 \usepackage{xcolor}
 \usepackage{tikz}
+\usepackage{pgfplots}
 \usepackage{hyperref}
 \usepackage{cite}
 \usepackage{url}
@@ -39,6 +40,7 @@
 \setlength{\headheight}{14pt}
 
 \pdfobjcompresslevel=0
+\pgfplotsset{compat=1.18}
 
 \definecolor{ujorange}{HTML}{F36F21}
 \definecolor{ujdark}{HTML}{1F2937}
@@ -310,14 +312,98 @@ The final model also satisfied the equilibrium check: the reaction force reporte
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.98\textwidth]{plot_vm_convergence.png}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.98\textwidth,
+            height=0.36\textwidth,
+            xlabel={Global mesh size (mm)},
+            ylabel={$\sigma_{\mathrm{vm,max}}$ (MPa)},
+            x dir=reverse,
+            xmin=1, xmax=14,
+            grid=both,
+            major grid style={draw=black!15},
+            minor grid style={draw=black!7},
+            legend style={draw=none, fill=none, font=\small, at={(0.02,0.98)}, anchor=north west},
+            ticklabel style={font=\small},
+            label style={font=\small},
+        ]
+            \addplot[
+                color=ujorange,
+                thick,
+                smooth,
+                mark=*,
+                mark size=1.6pt,
+            ] coordinates {
+                (14,47.40)
+                (10,48.16)
+                (8,48.28)
+                (5,48.91)
+                (3,49.00)
+                (2,49.02)
+                (1,49.05)
+            };
+            \addlegendentry{Uniform meshes}
+
+            \addplot[
+                only marks,
+                mark=star,
+                mark size=2.4pt,
+                color=black,
+            ] coordinates {
+                (8,49.06)
+            };
+            \addlegendentry{Controlled mesh (8+2)}
+        \end{axis}
+    \end{tikzpicture}
     \caption{Convergence of maximum von Mises stress with progressive mesh refinement.}
     \label{fig:vmplot}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.98\textwidth]{plot_p3_convergence.png}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=0.98\textwidth,
+            height=0.36\textwidth,
+            xlabel={Global mesh size (mm)},
+            ylabel={$|P_{3,\min}|$ (MPa)},
+            x dir=reverse,
+            xmin=1, xmax=14,
+            grid=both,
+            major grid style={draw=black!15},
+            minor grid style={draw=black!7},
+            legend style={draw=none, fill=none, font=\small, at={(0.02,0.98)}, anchor=north west},
+            ticklabel style={font=\small},
+            label style={font=\small},
+        ]
+            \addplot[
+                color=ujorange,
+                thick,
+                smooth,
+                mark=*,
+                mark size=1.6pt,
+            ] coordinates {
+                (14,30.74)
+                (10,31.46)
+                (8,31.15)
+                (5,31.73)
+                (3,31.63)
+                (2,31.63)
+                (1,31.64)
+            };
+            \addlegendentry{Uniform meshes}
+
+            \addplot[
+                only marks,
+                mark=star,
+                mark size=2.4pt,
+                color=black,
+            ] coordinates {
+                (8,31.63)
+            };
+            \addlegendentry{Controlled mesh (8+2)}
+        \end{axis}
+    \end{tikzpicture}
     \caption{Convergence of the magnitude of the minimum third principal stress, interpreted here as the largest expected compressive stress.}
     \label{fig:p3plot}
 \end{figure}
