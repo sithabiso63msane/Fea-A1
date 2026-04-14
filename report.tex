@@ -22,9 +22,9 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{hyperref}
+\usepackage[superscript]{cite}
 \usepackage{url}
 \usepackage{setspace}
-\usepackage{lastpage}
 \usepackage{etoolbox}
 
 \graphicspath{{assets/}}
@@ -38,70 +38,135 @@
 \sisetup{group-separator={,},group-minimum-digits=4}
 \setlength{\headheight}{14pt}
 
+\makeatletter
+\renewcommand{\@biblabel}[1]{#1.}
+\makeatother
+
 \definecolor{ujorange}{HTML}{F36F21}
 \definecolor{ujdark}{HTML}{1F2937}
 \definecolor{ujgray}{HTML}{6B7280}
 
 \titleformat{\section}{\Large\bfseries\color{ujdark}}{\thesection}{0.6em}{}
 \titleformat{\subsection}{\large\bfseries\color{ujdark}}{\thesubsection}{0.6em}{}
+\pretocmd{\section}{\ifnum\value{section}>0\clearpage\fi}{}{}
 
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{Finite Element Stress Analysis of a Mechanical Plate}
 \rhead{Strength of Materials 4A}
-\cfoot{Page \thepage\ of \pageref{LastPage}}
+\cfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 
 \newcommand{\reporttitle}{Finite Element Stress Analysis of a Mechanical Plate}
 \newcommand{\studentname}{Sithabiso Msane}
 \newcommand{\studentnumber}{223180282}
-\newcommand{\modulecode}{Strength of Materials 4A - Assessment 3}
+\newcommand{\modulecode}{Strength of Materials 4A}
 \newcommand{\department}{Department of Mechanical Engineering Science}
 \newcommand{\faculty}{Faculty of Engineering and the Built Environment}
 \newcommand{\software}{SOLIDWORKS Simulation}
+\newcommand{\assessment}{Assessment 3}
+\newcommand{\reportyear}{2026}
+\newcommand{\course}{ENGINEERING}
+\newcommand{\timeallowed}{60 HOURS}
+\newcommand{\totalmarks}{100}
+\newcommand{\examiner}{Prof R.F.\ Laubscher}
+\newcommand{\moderator}{Prof D.M.\ Madyira}
 
 \begin{document}
 
+\hypersetup{pageanchor=false}
 \begin{titlepage}
-\begin{tikzpicture}[remember picture,overlay]
-  \fill[ujorange] (current page.north west) rectangle ([yshift=-42mm]current page.north east);
-  \fill[ujorange!12] ([xshift=0mm,yshift=-42mm]current page.north west) rectangle ([xshift=18mm]current page.south west);
-  \draw[ujorange,line width=1.1pt] ([xshift=18mm,yshift=-58mm]current page.north west) -- ([xshift=-18mm,yshift=-58mm]current page.north east);
-  \draw[ujorange,line width=1.1pt] ([xshift=18mm,yshift=35mm]current page.south west) -- ([xshift=-18mm,yshift=35mm]current page.south east);
-\end{tikzpicture}
+\thispagestyle{empty}
 
-\vspace*{12mm}
-{\color{white}\bfseries\fontsize{20}{22}\selectfont UNIVERSITY OF JOHANNESBURG\par}
-\vspace{2mm}
-{\color{white}\large \faculty\par}
-\vspace{16mm}
+\vspace*{6mm}
+\begin{center}
+    \includegraphics[height=20mm]{uj_logo.png}\par
+    \vspace{10mm}
 
-{\Huge\bfseries\color{ujdark}\reporttitle\par}
-\vspace{4mm}
-{\Large\color{ujgray}\modulecode\par}
-\vspace{8mm}
+    {\Large\bfseries\color{ujdark}\assessment\par}
+    \vspace{3mm}
+    {\Large\bfseries\color{ujdark}\reportyear\par}
 
-{\large This report presents the finite element modelling, mesh convergence study, and final static stress results for the mechanical plate specified in the assignment brief. The selected solution was obtained using a converged mesh with local refinement at the stress concentration zones.\par}
+    \vspace{10mm}
+    {\large\bfseries\color{ujdark}COURSE:\ }\course\hfill{\large\bfseries\color{ujdark}TIME:\ }\timeallowed\par
+    \vspace{2mm}
+    {\large\bfseries\color{ujdark}SUBJECT:\ }\modulecode\hfill{\large\bfseries\color{ujdark}MARKS:\ }\totalmarks\par
 
-\vfill
+    \vspace{8mm}
+    {\large\bfseries Examiner:\ }\examiner\hfill{\large\bfseries Moderator:\ }\moderator\par
 
-\begin{tabular}{>{\bfseries}p{45mm}p{95mm}}
-Student Name: & \studentname \\
-Student Number: & \studentnumber \\
-Software: & \software \\
-Module: & \modulecode \\
-Department: & \department \\
-Date: & \today \\
-\end{tabular}
+    \vspace{14mm}
+    {\Huge\bfseries\color{ujdark}\reporttitle\par}
+    \vspace{6mm}
+    {\Large\color{ujgray}\faculty\par}
 
-\vfill
+    \vfill
 
-{\small\color{ujgray}Prepared in \LaTeX\ with figures extracted from the supplied \software\ result reports and plots generated from the uploaded mesh refinement study.\par}
+    \begin{tabular}{>{\bfseries}p{45mm}p{95mm}}
+    Student Name: & \studentname \\
+    Student Number: & \studentnumber \\
+    Software: & \software \\
+    Department: & \department \\
+    Date: & \today \\
+    \end{tabular}
+\end{center}
 \end{titlepage}
+
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+This report presents a static linear-elastic finite element analysis of a \SI{12}{mm}-thick mechanical plate modelled in \software. A mesh refinement study was performed to verify convergence of the maximum von Mises stress, the largest expected compressive stress (interpreted from the minimum third principal stress), and the maximum horizontal displacement. A final controlled mesh was selected to match the fine-mesh solution while reducing the computational size of the model. The final results satisfy equilibrium and provide the values required for the assignment submission.
+
+\vfill
+\noindent\textbf{Keywords:} finite element method; mesh convergence; von Mises stress; principal stress; displacement; \software.
+\clearpage
+
+\section*{Declaration}
+\addcontentsline{toc}{section}{Declaration}
+I, \studentname\ (\studentnumber), declare that:
+\par
+This report is my own original work.
+\par
+All sources used have been properly acknowledged by means of complete references.
+\par
+This work has not been submitted for assessment at any other institution.
+\par
+I understand that plagiarism is wrong and that the University may take disciplinary action if misconduct is found.
+
+\vspace{12mm}
+\noindent\textbf{Name:} \studentname\par
+\vspace{6mm}
+\noindent\textbf{Signature:} \IfFileExists{assets/signature.png}{\includegraphics[height=12mm]{signature.png}}{\rule{65mm}{0.4pt}}\par
+\vspace{6mm}
+\noindent\textbf{Date:} \today
+\clearpage
 
 \tableofcontents
 \clearpage
+
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+\clearpage
+
+\addcontentsline{toc}{section}{List of Tables}
+\listoftables
+\clearpage
+
+\section*{List of Acronyms}
+\addcontentsline{toc}{section}{List of Acronyms}
+\begin{tabular}{@{}p{25mm}p{125mm}@{}}
+FEM & Finite Element Method \\
+DOF & Degrees of Freedom \\
+CAD & Computer-Aided Design \\
+\end{tabular}
+\clearpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\hypersetup{pageanchor=true}
 
 \section{Introduction}
 
@@ -120,7 +185,7 @@ In the present assignment, the part is a \SI{12}{mm}-thick plate with one large 
 The aim of this report is to perform a static linear-elastic finite element stress analysis of the mechanical plate and to select a numerically efficient mesh that produces converged results for the required output quantities.
 
 \subsection{Objectives}
-The specific objectives were to:
+The objectives of this report are summarised below and describe the workflow followed from model setup through to mesh verification and final reporting.
 \begin{enumerate}
     \item model the supplied plate geometry in \software;
     \item assign the material properties specified in the assignment;
@@ -141,35 +206,26 @@ The final CAD model used for the analysis is shown in Fig.~\ref{fig:geometry}. T
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{model_geometry.jpeg}
-        \caption{Final geometric model used in the analysis.}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{bc_loads.jpg}
-        \caption{Model with fixed support and applied face load.}
-    \end{subfigure}
-    \caption{Geometric representation of the analysed plate.}
+    \includegraphics[width=0.98\textwidth]{model_geometry.jpeg}
+    \caption{Final geometric model used in the analysis.}
     \label{fig:geometry}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{bc_loads.jpg}
+    \caption{Model with fixed support and applied face load.}
+    \label{fig:bc_loads}
+\end{figure}
+
 \subsection{Boundary conditions}
-The left-hand face of the plate was fully constrained using a fixed geometry support. This suppresses translation in all three global directions on that face and creates a cantilever-type response. The support representation is visible in Fig.~\ref{fig:geometry}(b).
+The left-hand face of the plate was fully constrained using a fixed geometry support. This suppresses translation in all three global directions on that face and creates a cantilever-type response. The support representation is shown in Fig.~\ref{fig:bc_loads}.
 
 \subsection{Loads}
 A normal force of \SI{3000}{N} was applied to the loaded face on the right-hand side of the part. The load was distributed over the face rather than applied at a point, which is consistent with the assignment brief and avoids an artificial point-load singularity.
 
 \subsection{Analysis}
-A static linear-elastic analysis was performed using 3D solid elements in \software. Small-displacement behaviour was assumed, and the response was taken as purely mechanical. The required output quantities were extracted directly from the solution reports:
-\begin{itemize}
-    \item maximum von Mises stress;
-    \item largest expected compressive stress, taken as the magnitude of the minimum third principal stress;
-    \item maximum horizontal displacement, taken from the maximum positive $U_X$ value; and
-    \item resultant displacement, used only as a secondary convergence check.
-\end{itemize}
+A static linear-elastic analysis was performed using 3D solid elements in \software. Small-displacement behaviour was assumed, and the response was taken as purely mechanical. The required output quantities were the maximum von Mises stress, the largest expected compressive stress taken as the magnitude of the minimum third principal stress, and the maximum horizontal displacement taken from the maximum positive $U_X$ value. The resultant displacement was also reviewed as a secondary convergence check.
 
 \subsection{Material properties}
 The assignment specified a linear elastic isotropic material with modulus of elasticity $E=\SI{190}{GPa}$, Poisson's ratio $\nu=0.29$, and density $\rho=\SI{7800}{kg.m^{-3}}$. These properties were used to evaluate stiffness and mass. The SolidWorks material card used in the final report also contained a yield strength of \SI{250}{MPa}, which was used only as a practical acceptance check for the final von Mises stress result.
@@ -191,12 +247,7 @@ The assignment specified a linear elastic isotropic material with modulus of ela
 \end{table}
 
 \subsection{Acceptance criteria}
-The final model was accepted only if it satisfied the following engineering checks:
-\begin{enumerate}
-    \item \textbf{Force equilibrium:} the resultant reaction force should closely match the applied load of \SI{3000}{N}.
-    \item \textbf{Mesh convergence:} the key outputs should show negligible change relative to the finest uniform mesh. In this report, a change below \SI{1}{\percent} in both maximum von Mises stress and maximum horizontal displacement was used as the practical threshold.
-    \item \textbf{Elastic stress limit:} the final maximum von Mises stress should remain below the assigned yield strength of \SI{250}{MPa}.
-\end{enumerate}
+The final model was accepted only if it satisfied three engineering checks. Force equilibrium was verified by ensuring that the resultant reaction force closely matched the applied load of \SI{3000}{N}. Mesh convergence was verified by requiring negligible change in the key outputs relative to the finest uniform mesh; in this report a change below \SI{1}{\percent} in both maximum von Mises stress and maximum horizontal displacement was used as a practical threshold. Finally, the elastic stress limit was verified by ensuring that the final maximum von Mises stress remained below the assigned yield strength of \SI{250}{MPa}.
 
 The factor of safety against first yield for the final selected mesh is estimated by
 \begin{equation}
@@ -215,7 +266,7 @@ The final selected mesh is shown in Fig.~\ref{fig:mesh}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.60\textwidth]{final_mesh.jpeg}
+    \includegraphics[width=0.95\textwidth]{final_mesh.jpeg}
     \caption{Final converged mesh used for reporting, with global element size of \SI{8}{mm} and local mesh control of \SI{2}{mm}.}
     \label{fig:mesh}
 \end{figure}
@@ -231,64 +282,44 @@ The final model also satisfied the equilibrium check: the reaction force reporte
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{von_mises_contour.jpg}
-        \caption{von Mises stress contour.}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{ux_contour.jpg}
-        \caption{Horizontal displacement ($U_X$) contour.}
-    \end{subfigure}
-    \caption{Primary results from the final converged model. The peak von Mises stress occurs at the upper relief transition, while maximum horizontal displacement occurs at the loaded end.}
-    \label{fig:primaryresults}
+    \includegraphics[width=0.98\textwidth]{von_mises_contour.jpg}
+    \caption{von Mises stress contour for the final converged model.}
+    \label{fig:von_mises_contour}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{p3_contour.jpg}
-        \caption{Third principal stress ($P_3$) contour.}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{resultant_displacement_contour.jpg}
-        \caption{Resultant displacement contour.}
-    \end{subfigure}
-    \caption{Additional result fields from the final selected mesh. The most severe compressive stress is associated with the minimum $P_3$ region near the lower relief feature.}
-    \label{fig:secondaryresults}
+    \includegraphics[width=0.98\textwidth]{ux_contour.jpg}
+    \caption{Horizontal displacement ($U_X$) contour for the final converged model.}
+    \label{fig:ux_contour}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.83\textwidth]{plot_vm_convergence.png}
+    \includegraphics[width=0.98\textwidth]{p3_contour.jpg}
+    \caption{Third principal stress ($P_3$) contour for the final converged model.}
+    \label{fig:p3_contour}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{resultant_displacement_contour.jpg}
+    \caption{Resultant displacement contour for the final converged model.}
+    \label{fig:resultant_displacement_contour}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{plot_vm_convergence.png}
     \caption{Convergence of maximum von Mises stress with progressive mesh refinement.}
     \label{fig:vmplot}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.83\textwidth]{plot_displacement_convergence.png}
-    \caption{Convergence of maximum horizontal and resultant displacement. The assignment quantity of interest is the horizontal displacement $U_X$.}
-    \label{fig:uxplot}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.83\textwidth]{plot_p3_convergence.png}
+    \includegraphics[width=0.98\textwidth]{plot_p3_convergence.png}
     \caption{Convergence of the magnitude of the minimum third principal stress, interpreted here as the largest expected compressive stress.}
     \label{fig:p3plot}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.86\textwidth]{plot_mesh_cost_error.png}
-    \caption{Computational cost and convergence error trends for the uniform mesh study. The final selected controlled mesh achieved near-fine-mesh accuracy without the full cost penalty of the \SI{1}{mm} model.}
-    \label{fig:costplot}
 \end{figure}
 
 \subsection{Summary / table of results}
@@ -349,14 +380,14 @@ The final selected mesh --- a global element size of \SI{8}{mm} with a local \SI
 
 \appendix
 \clearpage
-\section{Additional notes on reported quantities}
-\begin{itemize}
-    \item The \textbf{largest expected compressive stress} was taken as the magnitude of the minimum third principal stress, because compression appears as a negative principal stress in the SolidWorks reports.
-    \item The \textbf{maximum horizontal displacement} required by the assignment was taken from the maximum positive $U_X$ value, not from the resultant displacement magnitude.
-    \item The \textbf{degrees of freedom} were calculated as three translational DOF per node for the 3D solid model.
-\end{itemize}
+\section{Plate drawing and key dimensions}
+%Figure~\ref{fig:plate_drawing} reproduces the assignment drawing used to define the geometry. The plate thickness is \SI{12}{mm} and the overall plate height is \SI{120}{mm}. The diameter of the large circular feature is defined by the assignment rule as the last two digits of the student number (in millimetres), unless that value is below 20 in which case \SI{20}{mm} is added; for student number \studentnumber, this gives a diameter of \SI{82}{mm}. Where the drawing shows a nominal circular diameter (e.g.\ $\varnothing 90$), this is treated as the template value that is replaced by the student-number-based diameter for the final model used in the analysis.
 
-\section{Why the final mesh was selected}
-The final controlled mesh was selected because it provides essentially the same response as the finest uniform mesh but at much lower computational cost. Relative to the \SI{1}{mm} uniform mesh, the selected model differs by only about \SI{0.02}{\percent} in maximum von Mises stress and about \SI{0.02}{\percent} in maximum horizontal displacement, yet it reduces the DOF from \num{5842443} to \num{129348}. That trade-off is highly favorable for engineering report work, where accuracy and efficiency both matter.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{assignment_figure_crop.png}
+    \caption{Assignment drawing of the mechanical plate (dimensions in mm).}
+    \label{fig:plate_drawing}
+\end{figure}
 
 \end{document}

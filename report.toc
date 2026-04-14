@@ -1,19 +1,23 @@
-\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Background}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Aim}{2}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Objectives}{2}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Report Overview}{3}{subsection.1.4}%
+\contentsline {section}{Abstract}{i}{Doc-Start}%
+\contentsline {section}{Declaration}{ii}{Doc-Start}%
+\contentsline {section}{List of Figures}{iv}{Doc-Start}%
+\contentsline {section}{List of Tables}{v}{Doc-Start}%
+\contentsline {section}{List of Acronyms}{vi}{Doc-Start}%
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Background}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Aim}{1}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Objectives}{1}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Report Overview}{2}{subsection.1.4}%
 \contentsline {section}{\numberline {2}Finite Element Model}{3}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Geometry}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Boundary conditions}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Loads}{3}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Analysis}{3}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.2}Boundary conditions}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Loads}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Analysis}{4}{subsection.2.4}%
 \contentsline {subsection}{\numberline {2.5}Material properties}{4}{subsection.2.5}%
 \contentsline {subsection}{\numberline {2.6}Acceptance criteria}{4}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}Discretization}{4}{subsection.2.7}%
-\contentsline {section}{\numberline {3}Results}{5}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Finite element results}{5}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Summary / table of results}{8}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Conclusion}{9}{section.4}%
-\contentsline {section}{\numberline {A}Additional notes on reported quantities}{10}{appendix.A}%
-\contentsline {section}{\numberline {B}Why the final mesh was selected}{10}{appendix.B}%
+\contentsline {subsection}{\numberline {2.7}Discretization}{5}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Results}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Finite element results}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Summary / table of results}{9}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Conclusion}{11}{section.4}%
+\contentsline {section}{\numberline {A}Plate drawing and key dimensions}{14}{appendix.A}%
