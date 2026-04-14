@@ -22,7 +22,7 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{hyperref}
-\usepackage[superscript]{cite}
+\usepackage{cite}
 \usepackage{url}
 \usepackage{setspace}
 \usepackage{etoolbox}
@@ -38,9 +38,7 @@
 \sisetup{group-separator={,},group-minimum-digits=4}
 \setlength{\headheight}{14pt}
 
-\makeatletter
-\renewcommand{\@biblabel}[1]{#1.}
-\makeatother
+\pdfobjcompresslevel=0
 
 \definecolor{ujorange}{HTML}{F36F21}
 \definecolor{ujdark}{HTML}{1F2937}
@@ -375,7 +373,7 @@ A static finite element stress analysis was completed for the mechanical plate u
 
 The final selected mesh --- a global element size of \SI{8}{mm} with a local \SI{2}{mm} mesh control in the stress concentration regions --- is the best engineering choice for this assignment. It reproduces the fine-mesh results almost exactly, while using only a small fraction of the nodes, elements, and degrees of freedom required by the \SI{1}{mm} uniform mesh. The final reported results are therefore numerically justified, mechanically consistent, and computationally efficient.
 
-\bibliographystyle{ieeetr}
+\bibliographystyle{IEEEtran}
 \bibliography{references}
 
 \appendix
